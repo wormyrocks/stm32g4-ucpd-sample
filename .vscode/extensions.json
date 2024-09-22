@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "stmicroelectronics.stm32-vscode-extension"
+    ],
+    "unwantedRecommendations": [
+        "espressif.esp-idf-extension",
+        "platformio.platformio-ide"
+    ]
+}
