@@ -285,14 +285,16 @@ void USBPD_DPM_HardReset(uint8_t PortNum, USBPD_PortPowerRole_TypeDef CurrentRol
   * @param  Size    Pointer on nb of u8 written by DPM
   * @retval None
   */
-void USBPD_DPM_GetDataInfo(uint8_t PortNum, USBPD_CORE_DataInfoType_TypeDef DataId, uint8_t *Ptr, uint32_t *Size)
+ void USBPD_DPM_GetDataInfo(uint8_t PortNum, USBPD_CORE_DataInfoType_TypeDef DataId, uint8_t *Ptr, uint32_t *Size)
 {
 /* USER CODE BEGIN USBPD_DPM_GetDataInfo */
   /* Check type of information targeted by request */
   switch(DataId)
   {
-//  case USBPD_CORE_DATATYPE_SNK_PDO:           /*!< Handling of port Sink PDO, requested by get sink capa*/
-    // break;
+  case USBPD_CORE_DATATYPE_SNK_PDO:           /*!< Handling of port Sink PDO, requested by get sink capa*/
+	  USBPD_PWR_IF_GetPortPDOs(PortNum, DataId, Ptr, Size);
+	  *Size *= 4;
+     break;
 //  case USBPD_CORE_EXTENDED_CAPA:              /*!< Source Extended capability message content          */
     // break;
 //  case USBPD_CORE_DATATYPE_REQ_VOLTAGE:       /*!< Get voltage value requested for BIST tests, expect 5V*/
@@ -368,7 +370,17 @@ void USBPD_DPM_SetDataInfo(uint8_t PortNum, USBPD_CORE_DataInfoType_TypeDef Data
 void USBPD_DPM_SNK_EvaluateCapabilities(uint8_t PortNum, uint32_t *PtrRequestData, USBPD_CORE_PDO_Type_TypeDef *PtrPowerObjectType)
 {
 /* USER CODE BEGIN USBPD_DPM_SNK_EvaluateCapabilities */
-  DPM_USER_DEBUG_TRACE(PortNum, "ADVICE: update USBPD_DPM_SNK_EvaluateCapabilities");
+  DPM_USER_DEBUG_TRACE(PortNum, "in USBPD_DPM_SNK_EvaluateCapabilities");
+  USBPD_SNKRDO_TypeDef rdo;
+  /* Initialize RDO */
+  rdo.d32 = 0;
+  /* Prepare the requested pdo */
+  rdo.FixedVariableRDO.ObjectPosition = 1;
+  rdo.FixedVariableRDO.OperatingCurrentIn10mAunits = 150;
+  rdo.FixedVariableRDO.MaxOperatingCurrent10mAunits = 150;
+  rdo.FixedVariableRDO.CapabilityMismatch = 0;
+  *PtrPowerObjectType = USBPD_CORE_PDO_TYPE_FIXED;
+  *PtrRequestData = rdo.d32;
 /* USER CODE END USBPD_DPM_SNK_EvaluateCapabilities */
 }
 

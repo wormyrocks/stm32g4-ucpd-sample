@@ -285,7 +285,8 @@ static void MX_ADC1_Init(void)
   LL_ADC_SetChannelSamplingTime(ADC1, LL_ADC_CHANNEL_10, LL_ADC_SAMPLINGTIME_247CYCLES_5);
   LL_ADC_SetChannelSingleDiff(ADC1, LL_ADC_CHANNEL_10, LL_ADC_SINGLE_ENDED);
   /* USER CODE BEGIN ADC1_Init 2 */
-
+  LL_ADC_StartCalibration(ADC1, LL_ADC_SINGLE_ENDED);
+  LL_ADC_REG_StartConversion(ADC1);
   /* USER CODE END ADC1_Init 2 */
 
 }
