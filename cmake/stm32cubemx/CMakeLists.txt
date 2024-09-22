@@ -12,6 +12,7 @@ target_compile_definitions(stm32cubemx INTERFACE
 	_RTOS 
 	_SNK 
 	_TRACE 
+	_GUI_INTERFACE 
 	USBPDCORE_LIB_PD3_CONFIG_MINSNK 
 	USE_HAL_DRIVER 
 	STM32G431xx
@@ -22,6 +23,7 @@ target_include_directories(stm32cubemx INTERFACE
     ../../Inc
     /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Drivers/STM32G4xx_HAL_Driver/Inc
     /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Drivers/STM32G4xx_HAL_Driver/Inc/Legacy
+    /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Utilities/GUI_INTERFACE
     /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Utilities/TRACER_EMB
     /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Middlewares/Third_Party/FreeRTOS/Source/include
     /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
@@ -42,7 +44,6 @@ target_sources(stm32cubemx INTERFACE
     ../../Src/usbpd_dpm_core.c
     ../../Src/stm32g4xx_it.c
     ../../Src/stm32g4xx_hal_msp.c
-    ../../Src/stm32g4xx_hal_timebase_tim.c
     /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_utils.c
     /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_exti.c
     /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_gpio.c
@@ -90,6 +91,9 @@ target_sources(stm32cubemx INTERFACE
     /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Middlewares/ST/STM32_USBPD_Library/Devices/STM32G4XX/src/usbpd_phy_hw_if.c
     /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Middlewares/ST/STM32_USBPD_Library/Devices/STM32G4XX/src/usbpd_pwr_hw_if.c
     /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Middlewares/ST/STM32_USBPD_Library/Devices/STM32G4XX/src/usbpd_timersserver.c
+    /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Utilities/GUI_INTERFACE/data_struct_tlv.c
+    /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Utilities/GUI_INTERFACE/bsp_gui.c
+    /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Utilities/GUI_INTERFACE/gui_api.c
     /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Utilities/TRACER_EMB/tracer_emb.c
     /home/evan/STM32Cube/Repository/STM32Cube_FW_G4_V1.6.0/Utilities/TRACER_EMB/tracer_emb_hw.c
     ../../Src/sysmem.c

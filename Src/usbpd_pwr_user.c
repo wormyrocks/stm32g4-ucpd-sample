@@ -484,9 +484,7 @@ __weak int32_t BSP_USBPD_PWR_VBUSGetVoltage(uint32_t Instance, uint32_t *pVoltag
 	  val *= 233;
 	  val /= 100;
 	  *pVoltage = val;
-    //PWR_DEBUG_TRACE(Instance, "in BSP_USBPD_PWR_VBUSGetVoltage");
   }
-  *pVoltage = val;
   return ret;
   /* USER CODE END BSP_USBPD_PWR_VBUSGetVoltage */
 }
