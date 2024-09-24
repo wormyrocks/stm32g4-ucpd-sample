@@ -53,7 +53,7 @@
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+#include "tusb.h"
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -230,7 +230,7 @@ void DMA1_Channel3_IRQHandler(void)
 void UCPD1_IRQHandler(void)
 {
   /* USER CODE BEGIN UCPD1_IRQn 0 */
-
+  tcd_int_handler(0);
   /* USER CODE END UCPD1_IRQn 0 */
   /* USER CODE BEGIN UCPD1_IRQn 1 */
 
