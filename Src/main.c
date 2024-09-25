@@ -80,9 +80,12 @@ PUTCHAR_PROTOTYPE
   return ch;
 }
 
-#define VOLTAGE_MAX_MV 12000      // maximum voltage in mV
+#define VOLTAGE_MAX_MV 15000     // maximum voltage in mV
 #define CURRENT_MAX_MA 500       // maximum current in mA
 #define CURRENT_OPERATING_MA 100 // operating current in mA
+uint32_t my_voltage = 0;
+uint32_t my_current = 0;
+
 bool tuc_pd_data_received_cb(uint8_t rhport, pd_header_t const *header, uint8_t const *dobj, uint8_t const *p_end)
 {
   switch (header->msg_type)
@@ -110,24 +113,19 @@ bool tuc_pd_data_received_cb(uint8_t rhport, pd_header_t const *header, uint8_t 
         if (voltage_mv <= VOLTAGE_MAX_MV && current_ma >= CURRENT_MAX_MA)
         {
           // Found a suitable PDO
+          my_voltage = voltage_mv;
+          my_current = current_ma;
           selected_pos = i + 1;
         }
-
-        break;
       }
 
       case PD_PDO_TYPE_BATTERY:
-        printf("BATTERY\n");
-
         break;
 
       case PD_PDO_TYPE_VARIABLE:
-        printf("VARIABLE\n");
-
         break;
 
       case PD_PDO_TYPE_APDO:
-        printf("APDO\n");
         break;
       }
 
@@ -138,17 +136,17 @@ bool tuc_pd_data_received_cb(uint8_t rhport, pd_header_t const *header, uint8_t 
     // Be careful and make sure your board can withstand the selected PDO
     // voltage other than safe5v e.g 12v or 20v
 
-    printf("Selected PDO %u\r\n", selected_pos);
-
-    // Send request with selected PDO position as response to Source Cap
+    printf("Selected PDO %u, voltage %d current %d\r\n", selected_pos, my_voltage, my_current);
+    // https://github.com/wagiminator/CH32X035-USB-PD-Tester/blob/main/software/pd_tester/src/usbpd_sink.c
+    //  Send request with selected PDO position as response to Source Cap
     pd_rdo_fixed_variable_t rdo = {
-        .current_extremum_10ma = (CURRENT_OPERATING_MA / 10), // max 500mA
-        .current_operate_10ma = 30,  // 300mA
+        .current_extremum_10ma = (my_current / 10), // max 500mA
+        .current_operate_10ma = my_current / 10,    // 300mA
         .reserved = 0,
         .epr_mode_capable = 0,
         .unchunked_ext_msg_support = 0,
-        .no_usb_suspend = 0,
-        .usb_comm_capable = 0,
+        .no_usb_suspend = 1,
+        .usb_comm_capable = 1,
         .capability_mismatch = 0,
         .give_back_flag = 0, // exteremum is max
         .object_position = selected_pos,
@@ -615,9 +613,8 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for (;;)
   {
-    tu_printf("HELLO\n");
     tuc_task();
-    osDelay(1);
+    osDelay(5);
   }
   /* USER CODE END 5 */
 }
