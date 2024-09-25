@@ -6,6 +6,7 @@
         "tcd.h": "c",
         "tusb.h": "c",
         "usbc.h": "c",
-        "stm32g4xx_ll_dma.h": "c"
+        "stm32g4xx_ll_dma.h": "c",
+        "tusb_option.h": "c"
     }
 }

@@ -30,6 +30,7 @@ extern "C" {
 #include "stm32g4xx_hal.h"
 
 #include "stm32g4xx_ll_adc.h"
+#include "stm32g4xx_ll_lpuart.h"
 #include "stm32g4xx_ll_rcc.h"
 #include "stm32g4xx_ll_bus.h"
 #include "stm32g4xx_ll_crs.h"

@@ -16,6 +16,7 @@
             "args": [
                 "--connect",
                 "port=swd",
+                "mode=UR",
                 "--download",
                 "${command:cmake.launchTargetPath}",
                 // Let CMake extension decide executable: "${command:cmake.launchTargetPath}",

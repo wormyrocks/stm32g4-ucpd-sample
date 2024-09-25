@@ -56,7 +56,6 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
-    tinyusb/lib/SEGGER_RTT/RTT/SEGGER_RTT.c
     tinyusb/lib/SEGGER_RTT/RTT
     tinyusb/lib/SEGGER_RTT/Config
     tinyusb/src
@@ -65,7 +64,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
 
 # Add project symbols (macros)
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user defined symbols
+    # tu_printf rtt_printf
 )
 
 # Add linked libraries
