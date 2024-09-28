@@ -107,6 +107,7 @@ int main(void)
   MX_DMA_Init();
   MX_LPUART1_UART_Init();
   MX_USB_PCD_Init();
+  HAL_Delay(1000);
   MX_UCPD1_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
@@ -116,7 +117,7 @@ int main(void)
   /* Init scheduler */
   osKernelInitialize();
   /* USBPD initialisation ---------------------------------*/
-  MX_USBPD_Init();
+  // MX_USBPD_Init();
 
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
@@ -532,6 +533,7 @@ static void MX_DMA_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  LL_GPIO_InitTypeDef GPIO_InitStruct = {0};
 /* USER CODE BEGIN MX_GPIO_Init_1 */
 /* USER CODE END MX_GPIO_Init_1 */
 
@@ -539,6 +541,28 @@ static void MX_GPIO_Init(void)
   LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOF);
   LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOA);
   LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOB);
+
+  /**/
+  LL_GPIO_SetOutputPin(LED_3_GPIO_Port, LED_3_Pin);
+
+  /**/
+  LL_GPIO_SetOutputPin(LED_4_GPIO_Port, LED_4_Pin);
+
+  /**/
+  GPIO_InitStruct.Pin = LED_3_Pin;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
+  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
+  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
+  LL_GPIO_Init(LED_3_GPIO_Port, &GPIO_InitStruct);
+
+  /**/
+  GPIO_InitStruct.Pin = LED_4_Pin;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
+  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
+  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
+  LL_GPIO_Init(LED_4_GPIO_Port, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
@@ -558,6 +582,7 @@ static void MX_GPIO_Init(void)
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
+  LL_GPIO_ResetOutputPin(LED_3_GPIO_Port, LED_3_Pin);
   /* Infinite loop */
   for(;;)
   {

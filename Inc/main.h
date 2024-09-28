@@ -74,6 +74,10 @@ void Error_Handler(void);
 #define VDDA_APPLI 3300
 #define VSENSE_Pin LL_GPIO_PIN_0
 #define VSENSE_GPIO_Port GPIOF
+#define LED_3_Pin LL_GPIO_PIN_6
+#define LED_3_GPIO_Port GPIOA
+#define LED_4_Pin LL_GPIO_PIN_1
+#define LED_4_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

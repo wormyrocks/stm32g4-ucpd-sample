@@ -35,7 +35,7 @@
 
 /* Define   ------------------------------------------------------------------*/
 #define PORT0_NB_SOURCEPDO         0U   /* Number of Source PDOs (applicable for port 0)   */
-#define PORT0_NB_SINKPDO           1U   /* Number of Sink PDOs (applicable for port 0)     */
+#define PORT0_NB_SINKPDO           4U   /* Number of Sink PDOs (applicable for port 0)     */
 #define PORT1_NB_SOURCEPDO         0U   /* Number of Source PDOs (applicable for port 1)   */
 #define PORT1_NB_SINKPDO           0U   /* Number of Sink PDOs (applicable for port 1)     */
 
@@ -113,7 +113,7 @@ uint32_t PORT0_PDO_ListSNK[USBPD_MAX_NB_PDO] =
     USBPD_PDO_TYPE_FIXED                 | /* Fixed supply PDO            */
 
     USBPD_PDO_SNK_FIXED_SET_VOLTAGE(5000U)         | /* Voltage in mV               */
-    USBPD_PDO_SNK_FIXED_SET_OP_CURRENT(1500U)     | /* Operating current in  mA            */
+    USBPD_PDO_SNK_FIXED_SET_OP_CURRENT(3000U)     | /* Operating current in  mA            */
 
     /* Common definitions applicable to all PDOs, defined only in PDO 1 */
     USBPD_PDO_SNK_FIXED_FRS_NOT_SUPPORTED          | /* Fast Role Swap				 */
@@ -124,11 +124,30 @@ uint32_t PORT0_PDO_ListSNK[USBPD_MAX_NB_PDO] =
     USBPD_PDO_SNK_FIXED_DRP_NOT_SUPPORTED            /* Dual-Role Power             */
   ),
 
-  /* PDO 2 */ (0x00000000U),
+  /* PDO 2 */
+  (
+    USBPD_PDO_TYPE_FIXED                        | /* Fixed supply                */
 
-  /* PDO 3 */ (0x00000000U),
+    USBPD_PDO_SNK_FIXED_SET_VOLTAGE(9000U)         | /* Voltage in mV               */
+    USBPD_PDO_SNK_FIXED_SET_OP_CURRENT(2000U)       /* Operating current in  mA            */
+  ),
 
-  /* PDO 4 */ (0x00000000U),
+  /* PDO 3 */
+  (
+    USBPD_PDO_TYPE_FIXED                        | /* Fixed supply                */
+
+    USBPD_PDO_SNK_FIXED_SET_VOLTAGE(15000U)         | /* Voltage in mV               */
+    USBPD_PDO_SNK_FIXED_SET_OP_CURRENT(2000U)       /* Operating current in  mA            */
+  ),
+
+  /* PDO 4 */
+  (
+    USBPD_PDO_TYPE_VARIABLE                        | /* Variable Supply                */
+
+    USBPD_PDO_SNK_VARIABLE_SET_OP_CURRENT(1000U)         | /* Max Current mA           */
+    USBPD_PDO_SNK_VARIABLE_SET_MAX_VOLTAGE(5000U)     | /* Max Voltage mV           */
+    USBPD_PDO_SNK_VARIABLE_SET_MIN_VOLTAGE(15000U)            /* Min Voltage mV           */
+  ),
 
   /* PDO 5 */ (0x00000000U),
 

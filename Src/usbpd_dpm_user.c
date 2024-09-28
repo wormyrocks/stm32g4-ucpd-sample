@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file    usbpd_dpm_user.c
-  * @author  MCD Application Team
-  * @brief   USBPD DPM user code
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file    usbpd_dpm_user.c
+ * @author  MCD Application Team
+ * @brief   USBPD DPM user code
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 #define USBPD_DPM_USER_C
@@ -224,7 +224,7 @@ void USBPD_DPM_UserCableDetection(uint8_t PortNum, USBPD_CAD_EVENT State)
     }
   }
 /* USER CODE BEGIN USBPD_DPM_UserCableDetection */
-DPM_USER_DEBUG_TRACE(PortNum, "ADVICE: update USBPD_DPM_UserCableDetection");
+  DPM_USER_DEBUG_TRACE(PortNum, "ADVICE: update USBPD_DPM_UserCableDetection");
 /* USER CODE END USBPD_DPM_UserCableDetection */
 }
 
@@ -263,43 +263,43 @@ void USBPD_DPM_Notification(uint8_t PortNum, USBPD_NotifyEventValue_TypeDef Even
   }
 /* USER CODE BEGIN USBPD_DPM_Notification */
   /* Manage event notified by the stack? */
-  switch(EventVal)
+  switch (EventVal)
   {
-//    case USBPD_NOTIFY_POWER_EXPLICIT_CONTRACT :
-//      break;
-//    case USBPD_NOTIFY_REQUEST_ACCEPTED:
-//      break;
-//    case USBPD_NOTIFY_REQUEST_REJECTED:
-//    case USBPD_NOTIFY_REQUEST_WAIT:
-//      break;
-//    case USBPD_NOTIFY_POWER_SWAP_TO_SNK_DONE:
-//      break;
-//    case USBPD_NOTIFY_STATE_SNK_READY:
-//      break;
-//    case USBPD_NOTIFY_HARDRESET_RX:
-//    case USBPD_NOTIFY_HARDRESET_TX:
-//      break;
-//    case USBPD_NOTIFY_STATE_SRC_DISABLED:
-//      break;
-//    case USBPD_NOTIFY_ALERT_RECEIVED :
-//      break;
-//    case USBPD_NOTIFY_CABLERESET_REQUESTED :
-//      break;
-//    case USBPD_NOTIFY_MSG_NOT_SUPPORTED :
-//      break;
-//    case USBPD_NOTIFY_PE_DISABLED :
-//      break;
-//    case USBPD_NOTIFY_USBSTACK_START:
-//      break;
-//    case USBPD_NOTIFY_USBSTACK_STOP:
-//      break;
-//    case USBPD_NOTIFY_DATAROLESWAP_DFP :
-//      break;
-//    case USBPD_NOTIFY_DATAROLESWAP_UFP :
-//      break;
-    default:
-      DPM_USER_DEBUG_TRACE(PortNum, "ADVICE: USBPD_DPM_Notification:%d", EventVal);
-      break;
+    //    case USBPD_NOTIFY_POWER_EXPLICIT_CONTRACT :
+    //      break;
+    //    case USBPD_NOTIFY_REQUEST_ACCEPTED:
+    //      break;
+    //    case USBPD_NOTIFY_REQUEST_REJECTED:
+    //    case USBPD_NOTIFY_REQUEST_WAIT:
+    //      break;
+    //    case USBPD_NOTIFY_POWER_SWAP_TO_SNK_DONE:
+    //      break;
+    //    case USBPD_NOTIFY_STATE_SNK_READY:
+    //      break;
+    //    case USBPD_NOTIFY_HARDRESET_RX:
+    //    case USBPD_NOTIFY_HARDRESET_TX:
+    //      break;
+    //    case USBPD_NOTIFY_STATE_SRC_DISABLED:
+    //      break;
+    //    case USBPD_NOTIFY_ALERT_RECEIVED :
+    //      break;
+    //    case USBPD_NOTIFY_CABLERESET_REQUESTED :
+    //      break;
+    //    case USBPD_NOTIFY_MSG_NOT_SUPPORTED :
+    //      break;
+    //    case USBPD_NOTIFY_PE_DISABLED :
+    //      break;
+    //    case USBPD_NOTIFY_USBSTACK_START:
+    //      break;
+    //    case USBPD_NOTIFY_USBSTACK_STOP:
+    //      break;
+    //    case USBPD_NOTIFY_DATAROLESWAP_DFP :
+    //      break;
+    //    case USBPD_NOTIFY_DATAROLESWAP_UFP :
+    //      break;
+  default:
+    DPM_USER_DEBUG_TRACE(PortNum, "ADVICE: USBPD_DPM_Notification:%d", EventVal);
+    break;
   }
 /* USER CODE END USBPD_DPM_Notification */
 }
@@ -330,25 +330,25 @@ void USBPD_DPM_GetDataInfo(uint8_t PortNum, USBPD_CORE_DataInfoType_TypeDef Data
 {
 /* USER CODE BEGIN USBPD_DPM_GetDataInfo */
   /* Check type of information targeted by request */
-  switch(DataId)
+  switch (DataId)
   {
-  case USBPD_CORE_DATATYPE_SNK_PDO:           /*!< Handling of port Sink PDO, requested by get sink capa*/
-	  USBPD_PWR_IF_GetPortPDOs(PortNum, DataId, Ptr, Size);
-	  *Size *= 4;
-     break;
-//  case USBPD_CORE_EXTENDED_CAPA:              /*!< Source Extended capability message content          */
+  case USBPD_CORE_DATATYPE_SNK_PDO: /*!< Handling of port Sink PDO, requested by get sink capa*/
+    USBPD_PWR_IF_GetPortPDOs(PortNum, DataId, Ptr, Size);
+    *Size *= 4;
+    break;
+    //  case USBPD_CORE_EXTENDED_CAPA:              /*!< Source Extended capability message content          */
     // break;
-//  case USBPD_CORE_DATATYPE_REQ_VOLTAGE:       /*!< Get voltage value requested for BIST tests, expect 5V*/
-//    *Size = 4;
-//    (void)memcpy((uint8_t *)Ptr, (uint8_t *)&DPM_Ports[PortNum].DPM_RequestedVoltage, *Size);
+    //  case USBPD_CORE_DATATYPE_REQ_VOLTAGE:       /*!< Get voltage value requested for BIST tests, expect 5V*/
+    //    *Size = 4;
+    //    (void)memcpy((uint8_t *)Ptr, (uint8_t *)&DPM_Ports[PortNum].DPM_RequestedVoltage, *Size);
     // break;
-//  case USBPD_CORE_INFO_STATUS:                /*!< Information status message content                  */
+    //  case USBPD_CORE_INFO_STATUS:                /*!< Information status message content                  */
     // break;
-//  case USBPD_CORE_MANUFACTURER_INFO:          /*!< Retrieve of Manufacturer info message content       */
+    //  case USBPD_CORE_MANUFACTURER_INFO:          /*!< Retrieve of Manufacturer info message content       */
     // break;
-//  case USBPD_CORE_BATTERY_STATUS:             /*!< Retrieve of Battery status message content          */
+    //  case USBPD_CORE_BATTERY_STATUS:             /*!< Retrieve of Battery status message content          */
     // break;
-//  case USBPD_CORE_BATTERY_CAPABILITY:         /*!< Retrieve of Battery capability message content      */
+    //  case USBPD_CORE_BATTERY_CAPABILITY:         /*!< Retrieve of Battery capability message content      */
     // break;
   default:
     DPM_USER_DEBUG_TRACE(PortNum, "ADVICE: update USBPD_DPM_GetDataInfo:%d", DataId);
@@ -369,29 +369,29 @@ void USBPD_DPM_SetDataInfo(uint8_t PortNum, USBPD_CORE_DataInfoType_TypeDef Data
 {
 /* USER CODE BEGIN USBPD_DPM_SetDataInfo */
   /* Check type of information targeted by request */
-  switch(DataId)
+  switch (DataId)
   {
-//  case USBPD_CORE_DATATYPE_RDO_POSITION:      /*!< Reset the PDO position selected by the sink only */
+    //  case USBPD_CORE_DATATYPE_RDO_POSITION:      /*!< Reset the PDO position selected by the sink only */
     // break;
-//  case USBPD_CORE_DATATYPE_RCV_SRC_PDO:       /*!< Storage of Received Source PDO values        */
+    //  case USBPD_CORE_DATATYPE_RCV_SRC_PDO:       /*!< Storage of Received Source PDO values        */
     // break;
-//  case USBPD_CORE_DATATYPE_RCV_SNK_PDO:       /*!< Storage of Received Sink PDO values          */
+    //  case USBPD_CORE_DATATYPE_RCV_SNK_PDO:       /*!< Storage of Received Sink PDO values          */
     // break;
-//  case USBPD_CORE_EXTENDED_CAPA:              /*!< Source Extended capability message content   */
+    //  case USBPD_CORE_EXTENDED_CAPA:              /*!< Source Extended capability message content   */
     // break;
-//  case USBPD_CORE_PPS_STATUS:                 /*!< PPS Status message content                   */
+    //  case USBPD_CORE_PPS_STATUS:                 /*!< PPS Status message content                   */
     // break;
-//  case USBPD_CORE_INFO_STATUS:                /*!< Information status message content           */
+    //  case USBPD_CORE_INFO_STATUS:                /*!< Information status message content           */
     // break;
-//  case USBPD_CORE_ALERT:                      /*!< Storing of received Alert message content    */
+    //  case USBPD_CORE_ALERT:                      /*!< Storing of received Alert message content    */
     // break;
-//  case USBPD_CORE_GET_MANUFACTURER_INFO:      /*!< Storing of received Get Manufacturer info message content */
+    //  case USBPD_CORE_GET_MANUFACTURER_INFO:      /*!< Storing of received Get Manufacturer info message content */
     // break;
-//  case USBPD_CORE_GET_BATTERY_STATUS:         /*!< Storing of received Get Battery status message content    */
+    //  case USBPD_CORE_GET_BATTERY_STATUS:         /*!< Storing of received Get Battery status message content    */
     // break;
-//  case USBPD_CORE_GET_BATTERY_CAPABILITY:     /*!< Storing of received Get Battery capability message content*/
+    //  case USBPD_CORE_GET_BATTERY_CAPABILITY:     /*!< Storing of received Get Battery capability message content*/
     // break;
-//  case USBPD_CORE_SNK_EXTENDED_CAPA:          /*!< Storing of Sink Extended capability message content       */
+    //  case USBPD_CORE_SNK_EXTENDED_CAPA:          /*!< Storing of Sink Extended capability message content       */
     // break;
   default:
     DPM_USER_DEBUG_TRACE(PortNum, "ADVICE: update USBPD_DPM_SetDataInfo:%d", DataId);
@@ -507,8 +507,7 @@ USBPD_StatusTypeDef USBPD_DPM_EvaluateDataRoleSwap(uint8_t PortNum)
   USBPD_StatusTypeDef status = USBPD_REJECT;
   {
     /* ACCEPT DRS if at least supported by 1 data role */
-    if (((USBPD_TRUE == DPM_USER_Settings[PortNum].PE_DR_Swap_To_DFP) && (USBPD_PORTDATAROLE_UFP == DPM_Params[PortNum].PE_DataRole))
-       || ((USBPD_TRUE == DPM_USER_Settings[PortNum].PE_DR_Swap_To_UFP) && (USBPD_PORTDATAROLE_DFP == DPM_Params[PortNum].PE_DataRole)))
+    if (((USBPD_TRUE == DPM_USER_Settings[PortNum].PE_DR_Swap_To_DFP) && (USBPD_PORTDATAROLE_UFP == DPM_Params[PortNum].PE_DataRole)) || ((USBPD_TRUE == DPM_USER_Settings[PortNum].PE_DR_Swap_To_UFP) && (USBPD_PORTDATAROLE_DFP == DPM_Params[PortNum].PE_DataRole)))
     {
       status = USBPD_ACCEPT;
     }
